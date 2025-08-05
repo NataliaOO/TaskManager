@@ -13,14 +13,4 @@ public class Task {
         this.name = name;
         this.description = description;
     }
-
-    @Override
-    public String toString() {
-        return "\nTask{" +
-                "id=" + getId() +
-                ", name='" + getName() + '\'' +
-                ", description='" + getDescription() + '\'' +
-                ", status=" + getStatusTask() +
-                '}';
-    }
 }

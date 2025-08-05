@@ -1,26 +1,15 @@
 package model;
 
+import lombok.Getter;
+import lombok.ToString;
 
+@Getter
+@ToString(callSuper = true)
 public class SubTask extends Task {
-    private final int epikId;
+    private final int epicId;
 
-    public SubTask(String name, String description, int epikId) {
+    public SubTask(String name, String description, int epicId) {
         super(name, description);
-        this.epikId = epikId;
-    }
-
-    public int getEpicId() {
-        return epikId;
-    }
-
-    @Override
-    public String toString() {
-        return "\nSubTask{" +
-                "id=" + getId() +
-                ", name='" + getName() + '\'' +
-                ", description='" + getDescription() + '\'' +
-                ", status=" + getStatusTask() +
-                ", epicId=" + epikId +
-                '}';
+        this.epicId = epicId;
     }
 }

@@ -1,13 +1,15 @@
 package model;
 
 import lombok.Getter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@ToString(callSuper = true)
 public class Epic extends Task {
-    private List<Integer> subtasks = new ArrayList<>();
+    private final List<Integer> subtasks = new ArrayList<>();
 
     public Epic(String name, String description) {
         super(name, description);
@@ -23,16 +25,5 @@ public class Epic extends Task {
 
     public void removeAllSubtasks() {
         subtasks.clear();
-    }
-
-    @Override
-    public String toString() {
-        return "\nEpic{" +
-                "id=" + getId() +
-                ", name='" + getName() + '\'' +
-                ", description='" + getDescription() + '\'' +
-                ", status=" + getStatusTask() +
-                ", subtasks=" + subtasks +
-                '}';
     }
 }
