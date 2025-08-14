@@ -96,7 +96,7 @@ public class TaskManagerImpl implements TaskManager {
 
     @Override
     public void removeAllEpics() {
-        epics.values().forEach(epic -> epic.getSubtasks().forEach(subTasks::remove));
+        subTasks.clear();
         epics.clear();
     }
 
