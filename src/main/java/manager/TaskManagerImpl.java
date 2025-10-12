@@ -18,6 +18,20 @@ public class TaskManagerImpl implements TaskManager {
     private final Map<Integer, Task> tasks = new HashMap<>();
     private final Map<Integer, SubTask> subTasks = new HashMap<>();
     private final Map<Integer, Epic> epics = new HashMap<>();
+    private final HistoryManager history;
+
+    public TaskManagerImpl() {
+        this(new InMemoryHistoryManager());
+    }
+
+    public TaskManagerImpl(HistoryManager history) {
+        this.history = history;
+    }
+
+    @Override
+    public List<Task> getHistory() {
+        return history.getHistory();
+    }
 
     @Override
     public List<Task> getAllTasks() {
@@ -26,7 +40,9 @@ public class TaskManagerImpl implements TaskManager {
 
     @Override
     public Task getTaskById(int id) {
-        return tasks.get(id);
+        Task task = tasks.get(id);
+        history.add(task);
+        return task;
     }
 
     @Override
@@ -63,7 +79,9 @@ public class TaskManagerImpl implements TaskManager {
 
     @Override
     public Epic getEpicById(int id) {
-        return epics.get(id);
+        Epic epic = epics.get(id);
+        history.add(epic);
+        return epic;
     }
 
     @Override
@@ -107,7 +125,9 @@ public class TaskManagerImpl implements TaskManager {
 
     @Override
     public SubTask getSubTaskById(int id) {
-        return subTasks.get(id);
+        SubTask subTask = subTasks.get(id);
+        history.add(subTask);
+        return subTask;
     }
 
     @Override

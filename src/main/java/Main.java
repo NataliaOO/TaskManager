@@ -1,5 +1,5 @@
+import manager.Managers;
 import manager.TaskManager;
-import manager.TaskManagerImpl;
 import model.Epic;
 import model.SubTask;
 import model.Task;
@@ -9,7 +9,7 @@ import static model.StatusTask.IN_PROGRESS;
 
 public class Main {
     public static void main(String[] args) {
-        TaskManager manager = new TaskManagerImpl();
+        TaskManager manager = Managers.getDefault();
 
         Task task1 = new Task("Позвонить бабушке", "Узнать, как дела");
         Task task2 = new Task("Сделать зарядку", "10 минут утром");
@@ -35,6 +35,23 @@ public class Main {
         System.out.println(manager.getAllTasks());
         System.out.println("=== Все SubTasks ===");
         System.out.println(manager.getAllSubTasks());
+
+        // Примеры просмотров:
+        manager.getTaskById(task1.getId());
+        manager.getEpicById(epic1.getId());
+        manager.getSubTaskById(subtask1.getId());
+        manager.getTaskById(task2.getId());
+        manager.getEpicById(epic2.getId());
+        manager.getTaskById(task1.getId());
+        manager.getEpicById(epic1.getId());
+        manager.getSubTaskById(subtask2.getId());
+        manager.getTaskById(task2.getId());
+        manager.getEpicById(epic2.getId());
+        manager.getTaskById(task1.getId());
+        manager.getEpicById(epic1.getId());
+        System.out.println("\n=== История (ожидаем 10 элементов) ===");
+        System.out.println(manager.getHistory().size());
+        System.out.println(manager.getHistory());
 
         task1.setStatusTask(DONE);
         manager.update(task1);
