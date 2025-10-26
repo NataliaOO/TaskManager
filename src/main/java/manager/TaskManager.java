@@ -7,6 +7,9 @@ import model.Task;
 import java.util.List;
 
 public interface TaskManager {
+
+    List<Task> getHistory();
+
     List<Task> getAllTasks();
 
     Task getTaskById(int id);
